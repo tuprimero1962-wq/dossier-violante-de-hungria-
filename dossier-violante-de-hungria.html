@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER: Violante de Hungría (1215-1251)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .header .dates {
+            font-size: 1.5em;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        
+        .section-1 .section-title { background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%); }
+        .section-2 .section-title { background: linear-gradient(135deg, #4169E1 0%, #6495ED 100%); }
+        .section-3 .section-title { background: linear-gradient(135deg, #DAA520 0%, #FFD700 100%); color: #333; }
+        .section-4 .section-title { background: linear-gradient(135deg, #9370DB 0%, #BA55D3 100%); }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid;
+            backdrop-filter: blur(10px);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .section-1 .card { border-left-color: #3CB371; }
+        .section-2 .card { border-left-color: #6495ED; }
+        .section-3 .card { border-left-color: #FFD700; }
+        .section-4 .card { border-left-color: #BA55D3; }
+        
+        .card-title {
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        
+        .card-description {
+            font-size: 0.95em;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .link-btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .link-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .section-1 .link-btn { background: #3CB371; color: white; }
+        .section-2 .link-btn { background: #6495ED; color: white; }
+        .section-3 .link-btn { background: #FFD700; color: #333; }
+        .section-4 .link-btn { background: #BA55D3; color: white; }
+        
+        .link-btn:hover {
+            filter: brightness(1.2);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #BA55D3, #9370DB);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #BA55D3;
+            border: 3px solid #1a1a2e;
+        }
+        
+        .timeline-date {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #BA55D3;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-text {
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section-title {
+                font-size: 1.4em;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>VIOLANTE DE HUNGRÍA</h1>
+        <div class="subtitle">Reina Consorte de Aragón, Mallorca y Valencia | Condesa Consorte de Barcelona | Señora de Montpellier</div>
+        <div class="dates">c. 1215/1216 – Huesca, 12 de octubre de 1251</div>
+    </div>
+
+    <!-- BLOQUE 1: FUENTES PRIMARIAS -->
+    <div class="section section-1">
+        <div class="section-title">📜 BLOQUE 1 — FUENTES PRIMARIAS</div>
+        <p style="margin-bottom: 20px; opacity: 0.8; font-style: italic;">Documentos y testimonios de la propia época medieval</p>
+        
+        <div class="cards-grid">
+            <div class="card" onclick="window.open('https://www.cervantesvirtual.com/obra/llibre-dels-feits-del-rei-en-jacme-manuscrit--0/', '_blank')">
+                <div class="card-title">Llibre dels Feits (Crònica de Jaume I)</div>
+                <div class="card-description">Autobiografía dictada por el propio rey; principal fuente narrativa coetánea sobre Violante, aunque el propio Jaime I apenas le dedica espacio salvo lo relativo a su dote y linaje.</div>
+                <div class="card-links">
+                    <span class="link-btn">Manuscrito de Poblet (1343) - Cervantes Virtual</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://archive.org/details/Llibredelsfets', '_blank')">
+                <div class="card-title">Edición Digital Completa</div>
+                <div class="card-description">Llibre dels Feits - Biblioteca Virtual Joan Lluís Vives. Edición digital completa de la crónica.</div>
+                <div class="card-links">
+                    <span class="link-btn">Archive.org - Edición completa</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://es.wikipedia.org/wiki/Violante_de_Hungr%C3%ADa', '_blank')">
+                <div class="card-title">Sepulcro de Violante de Hungría</div>
+                <div class="card-description">Monumento físico conservado en el presbiterio del Monasterio de Santa María de Vallbona (Vallbona de les Monges, Lleida), junto al de su hija la infanta Sancha. Restaurado en 2002 con financiación del Gobierno de Hungría (12.000 €).</div>
+                <div class="card-links">
+                    <span class="link-btn">Wikipedia</span>
+                    <span class="link-btn">Mujeres y Patrimonio</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://mujeresypatrimonio.org/blog/violante-de-hungria/', '_blank')">
+                <div class="card-title">Mujeres y Patrimonio</div>
+                <div class="card-description">Información sobre el sepulcro y patrimonio de Violante de Hungría.</div>
+                <div class="card-links">
+                    <span class="link-btn">mujeresypatrimonio.org</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://www.cultura.gob.es/archivos-aca/actividades/exposiciones-virtuales/signos-reinas.html', '_blank')">
+                <div class="card-title">Signos de Validación Documental</div>
+                <div class="card-description">Documentos de cancillería originales conservados en el Archivo de la Corona de Aragón que muestran los signos, sellos y firmas propios que usaban las reinas de la Corona, incluida Violante.</div>
+                <div class="card-links">
+                    <span class="link-btn">Archivo de la Corona de Aragón</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOQUE 2: FUENTES SECUNDARIAS -->
+    <div class="section section-2">
+        <div class="section-title">📚 BLOQUE 2 — FUENTES SECUNDARIAS</div>
+        <p style="margin-bottom: 20px; opacity: 0.8; font-style: italic;">Estudios académicos e institucionales que interpretan lo anterior</p>
+        
+        <div class="cards-grid">
+            <div class="card" onclick="window.open('https://historia-hispanica.rah.es/biografias/46152-violante-de-hungria', '_blank')">
+                <div class="card-title">Real Academia de la Historia</div>
+                <div class="card-description">Ficha interactiva en Historia Hispánica. Es la app de mapa interactivo de la RAH. La entrada académica equivalente del Diccionario Biográfico Español es de Hinojosa Montalvo, José (2014).</div>
+                <div class="card-links">
+                    <span class="link-btn">historia-hispanica.rah.es</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://www.academia.edu/3040304/Los_testamentos_de_Jaime_I_de_Arag%C3%B3n_Repartos_territoriales_y_turbulencias_pol%C3%ADticas_2009_', '_blank')">
+                <div class="card-title">Rodrigo Estevan, María Luz</div>
+                <div class="card-description">"Los testamentos de Jaime I: repartos territoriales y turbulencias políticas", Cuadernos CEHIMO, 35 (2009), pp. 61-90. Texto completo libre.</div>
+                <div class="card-links">
+                    <span class="link-btn">Academia.edu - Texto completo</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://hispadoc.es/servlet/articulo?codigo=7687404', '_blank')">
+                <div class="card-title">Artículo Académico sobre Relación con Jaime I</div>
+                <div class="card-description">"Los parientes aragoneses: la reina doña Violante y Jaime I el Conquistador"</div>
+                <div class="card-links">
+                    <span class="link-btn">hispadoc.es</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://www.cultura.gob.es/archivos-aca/actividades/exposiciones-virtuales/signos-reinas.html', '_blank')">
+                <div class="card-title">Conde y Delgado de Molina / Serrano Coll</div>
+                <div class="card-description">"Signos, sellos y firmas de las reinas de Aragón" (2003) e "Iconografía de género: los sellos de las reinas de Aragón" (2006). Exposición virtual del Archivo de la Corona de Aragón.</div>
+                <div class="card-links">
+                    <span class="link-btn">Archivo de la Corona de Aragón</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://patrimoni.gencat.cat/es/historias/violante-de-hungria-la-mano-derecha-de-un-gran-rey', '_blank')">
+                <div class="card-title">Patrimoni Cultural — Generalitat de Catalunya</div>
+                <div class="card-description">"Violante de Hungría: la mano derecha de un gran rey"</div>
+                <div class="card-links">
+                    <span class="link-btn">patrimoni.gencat.cat</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('http://www.rutasjaumei.com/es/protagonistas-jaume-i/12-115/violante-de-hungria-la-reina-venida-de-oriente.php', '_blank')">
+                <div class="card-title">Rutas Jaume I</div>
+                <div class="card-description">"Violante de Hungría, la reina venida de Oriente" — recoge con detalle el contenido del testamento.</div>
+                <div class="card-links">
+                    <span class="link-btn">rutasjaumei.com</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://valenciaplaza.com/noticas-cultura-valencia-comunitat-valenciana/violant-dhongria-consejera-y-confidente-de-jaume-i', '_blank')">
+                <div class="card-title">Valencia Plaza</div>
+                <div class="card-description">"Violant d'Hongria, consejera y confidente del rey Jaume I" — recoge también el reparto testamentario de joyas.</div>
+                <div class="card-links">
+                    <span class="link-btn">valenciaplaza.com</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://es.wikipedia.org/wiki/Violante_de_Hungr%C3%ADa', '_blank')">
+                <div class="card-title">Wikipedia — Violante de Hungría</div>
+                <div class="card-description">Síntesis de conjunto y bibliografía citada (Hinojosa Montalvo, Rodrigo Estevan). No se usa como fuente de datos concretos que no estén respaldados también en otro sitio.</div>
+                <div class="card-links">
+                    <span class="link-btn">Wikipedia</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://personal.ua.es/es/jorge-paya/documentos/aguas/lineas-fronterizas-trazadas-por-almizra-torrellas-y-elche.-1244-1305.-tesis-jorge-paya.pdf', '_blank')">
+                <div class="card-title">Torres Fontes, Juan</div>
+                <div class="card-description">"La delimitación del Reino de Murcia..." Estudio académico sobre el Tratado de Almizra que documenta expresamente el papel mediador de Violante: "La intervención de Da Violante de Hungría, amparando los intereses de su hija... evitó la contienda que hubiera podido producirse".</div>
+                <div class="card-links">
+                    <span class="link-btn">PDF - Universidad de Alicante</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://estudiosmedievales.revistas.csic.es/index.php/estudiosmedievales/article/download/791/803/808', '_blank')">
+                <div class="card-title">Nombres del Séquito Húngaro y Matrimonio</div>
+                <div class="card-description">Anuario de Estudios Medievales, CSIC, 2016. Estudio académico revisado por pares que detalla el séquito con el que llegó Violante a Aragón.</div>
+                <div class="card-links">
+                    <span class="link-btn">CSIC - Estudios Medievales</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOQUE 3: JOYAS, AJUAR Y CURIOSIDADES -->
+    <div class="section section-3">
+        <div class="section-title">💎 BLOQUE 3 — JOYAS, AJUAR Y CURIOSIDADES</div>
+        
+        <div class="cards-grid">
+            <div class="card" onclick="window.open('https://es.wikipedia.org/wiki/Violante_de_Hungr%C3%ADa', '_blank')">
+                <div class="card-title">El Tocado de Piedras Preciosas</div>
+                <div class="card-description">Al llegar a Barcelona en 1235 con un séquito de más de cien personas, su padre Andrés II le regaló, entre otros bienes, un exquisito tocado de piedras preciosas.</div>
+                <div class="card-links">
+                    <span class="link-btn">Wikipedia</span>
+                    <span class="link-btn">Mujeres y Patrimonio</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://valenciaplaza.com/noticas-cultura-valencia-comunitat-valenciana/violant-dhongria-consejera-y-confidente-de-jaume-i', '_blank')">
+                <div class="card-title">El Reparto de sus Joyas en el Testamento</div>
+                <div class="card-description">En su testamento de 1251 dispuso que todas sus joyas y piedras preciosas se repartieran entre cuatro de sus hijas: Constanza, Sancha, María e Isabel. Su hija Violante (la futura reina de Castilla) quedó excluida de ese reparto por haber recibido ya su propia dote al casarse con Alfonso X.</div>
+                <div class="card-links">
+                    <span class="link-btn">Valencia Plaza</span>
+                    <span class="link-btn">Rutas Jaume I</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('http://www.rutasjaumei.com/es/protagonistas-jaume-i/12-115/violante-de-hungria-la-reina-venida-de-oriente.php', '_blank')">
+                <div class="card-title">El Manto Real Donado a una Plebeya</div>
+                <div class="card-description">También dispuso en su testamento que su manto real y su "supertunicale" (prenda de gala) fueran donados a Ermengola, esposa del entonces Justicia Mayor de Aragón — un detalle que muestra vínculos personales concretos más allá de la política.</div>
+                <div class="card-links">
+                    <span class="link-btn">Rutas Jaume I</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('http://www.rutasjaumei.com/es/protagonistas-jaume-i/12-115/violante-de-hungria-la-reina-venida-de-oriente.php', '_blank')">
+                <div class="card-title">Caridad Testamentaria a Gran Escala</div>
+                <div class="card-description">Pidió a Jaime I que, en su memoria, vistiera a mil pobres y repartiera comida entre treinta mil personas.</div>
+                <div class="card-links">
+                    <span class="link-btn">Rutas Jaume I</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://es.wikipedia.org/wiki/Violante_de_Hungr%C3%ADa', '_blank')">
+                <div class="card-title">El Condado Húngaro de Posana: Una Herencia Nunca Ejercida</div>
+                <div class="card-description">Legó a sus hijos Pedro, Jaime y Sancho el condado de Posana, en Hungría, que ella había heredado de su madre pero que en la práctica seguía administrado por su hermano, el rey Béla IV; por la distancia, la soberanía aragonesa sobre él nunca llegó a materializarse.</div>
+                <div class="card-links">
+                    <span class="link-btn">Wikipedia</span>
+                    <span class="link-btn">Ecured</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('http://eljardindelasfloreshistoricas.blogspot.com/', '_blank')">
+                <div class="card-title">El Sepulcro "Intacto" de los Árpád</div>
+                <div class="card-description">Según algunas fuentes de divulgación, sus restos serían los únicos de toda la dinastía húngara de los Árpád que no han sido violados ni destruidos a lo largo de la historia (a diferencia de las tumbas reales en la propia Hungría, saqueadas en distintas épocas). Este dato tiene carácter más divulgativo que estrictamente académico.</div>
+                <div class="card-links">
+                    <span class="link-btn">El Jardín de las Flores Históricas</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://castellonplaza.com/castellonplaza/ViolantdHongriaconsejerayconfidentedelreyJaumeI1', '_blank')">
+                <div class="card-title">Pervivencia Cultural: Fiestas de la Magdalena</div>
+                <div class="card-description">Violante sigue "viva" hoy en las Fiestas de la Magdalena de Castellón de la Plana, donde cada año una joven representa a la reina junto a su corte de damas; la ciudad conserva además un busto suyo en uno de sus jardines centrales como primera gran dama de la ciudad.</div>
+                <div class="card-links">
+                    <span class="link-btn">Castellón Plaza</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://es.wikipedia.org/wiki/Violante_de_Hungr%C3%ADa', '_blank')">
+                <div class="card-title">Retiro Final Antes de Morir</div>
+                <div class="card-description">Debilitada por los nueve partos en doce años, en 1250 se retiró al santuario de Santa María de Salas, cerca de Huesca, donde permaneció hasta enfermar de fiebres poco antes de morir.</div>
+                <div class="card-links">
+                    <span class="link-btn">Wikipedia</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://historia.nationalgeographic.com.es/a/jaime-i-conquistador_18695', '_blank')">
+                <div class="card-title">El Escándalo de la Lengua Cortada</div>
+                <div class="card-description">En algún momento durante o después del matrimonio de Jaime I con Violante, resurgió la reclamación de Teresa Gil de Vidaura, una noble a la que el rey había prometido matrimonio antes de casarse con Violante. El confesor real, el obispo dominico Berenguer de Castellbisbal, reveló esta promesa a Roma, y Jaime I, furioso, ordenó que le cortaran la lengua. El Papa Inocencio IV excomulgó al rey por esta represalia. El litigio formal de Teresa ante Roma, sin embargo, solo prosperó tras la muerte de la propia Violante en 1251.</div>
+                <div class="card-links">
+                    <span class="link-btn">National Geographic Historia</span>
+                    <span class="link-btn">España en la Historia</span>
+                    <span class="link-btn">Rutas Jaume I</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://dbe.rah.es/biografias/5890/violante-de-aragon-i', '_blank')">
+                <div class="card-title">La Boda de su Hija Violante</div>
+                <div class="card-description">Cuando su hija, la infanta Violante, se casó con el infante Alfonso de Castilla en Valladolid el 26 de noviembre de 1246, ni Jaime I ni Violante de Hungría asistieron a la ceremonia. Tampoco asistió Fernando III, padre del novio. Sí estuvo presente, representando a la Corona de Castilla, la reina Juana de Ponthieu, segunda esposa de Fernando III.</div>
+                <div class="card-links">
+                    <span class="link-btn">Diccionario Biográfico Español</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://personal.ua.es/es/jorge-paya/documentos/aguas/lineas-fronterizas-trazadas-por-almizra-torrellas-y-elche.-1244-1305.-tesis-jorge-paya.pdf', '_blank')">
+                <div class="card-title">La Mediadora del Tratado de Almizra</div>
+                <div class="card-description">En 1244, cuando las negociaciones entre Jaime I y el infante Alfonso de Castilla por la posesión de Játiva estuvieron a punto de romperse y desencadenar una guerra entre las dos coronas, Violante intervino personalmente como mediadora entre su esposo y su futuro yerno. Según recogen las crónicas, medió ante Jaime I incluso llorando para que reconsiderara su postura y retomara las conversaciones. El giro permitió alcanzar el acuerdo final, que fijó la frontera entre Aragón y Castilla al sur del Júcar.</div>
+                <div class="card-links">
+                    <span class="link-btn">PDF - Universidad de Alicante</span>
+                    <span class="link-btn">Hojadellunes.com</span>
+                    <span class="link-btn">Diario Información</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://estudiosmedievales.revistas.csic.es/index.php/estudiosmedievales/article/download/791/803/808', '_blank')">
+                <div class="card-title">El Séquito Húngaro que la Acompañó</div>
+                <div class="card-description">Violante llegó a Aragón acompañada de un séquito que incluía a un noble húngaro, el conde Dionís, su nodriza, su capellán (el monje cisterciense Nicolás), su médico (Guido) y sus pajes (Gregorio y Archimbaldo).</div>
+                <div class="card-links">
+                    <span class="link-btn">CSIC - Estudios Medievales</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOQUE 4: CRONOLOGÍA CONSOLIDADA -->
+    <div class="section section-4">
+        <div class="section-title">📅 BLOQUE 4 — CRONOLOGÍA CONSOLIDADA</div>
+        
+        <div class="timeline">
+            <div class="timeline-item" onclick="window.open('https://historia-hispanica.rah.es/biografias/46152-violante-de-hungria', '_blank')">
+                <div class="timeline-date">c. 1215-1216</div>
+                <div class="timeline-text">Nace en Esztergom (Hungría), hija de Andrés II de Hungría y Yolanda de Courtenay.</div>
+                <div class="timeline-links">
+                    <span class="link-btn">RAH - Historia Hispánica</span>
+                    <span class="link-btn">Wikipedia</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="window.open('https://es.wikipedia.org/wiki/Violante_de_Hungr%C3%ADa', '_blank')">
+                <div class="timeline-date">1234</div>
+                <div class="timeline-text">Se acuerda su compromiso matrimonial con Jaime I de Aragón.</div>
+                <div class="timeline-links">
+                    <span class="link-btn">Wikipedia</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="window.open('https://patrimoni.gencat.cat/es/historias/violante-de-hungria-la-mano-derecha-de-un-gran-rey', '_blank')">
+                <div class="timeline-date">8 de septiembre de 1235</div>
+                <div class="timeline-text">Boda en la Catedral de Barcelona.</div>
+                <div class="timeline-links">
+                    <span class="link-btn">Patrimoni Cultural</span>
+                    <span class="link-btn">Wikipedia</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="window.open('https://patrimoni.gencat.cat/es/historias/violante-de-hungria-la-mano-derecha-de-un-gran-rey', '_blank')">
+                <div class="timeline-date">1238</div>
+                <div class="timeline-text">Participa activamente en la conquista de Valencia.</div>
+                <div class="timeline-links">
+                    <span class="link-btn">Patrimoni Cultural</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="window.open('https://www.academia.edu/3040304/Los_testamentos_de_Jaime_I_de_Arag%C3%B3n_Repartos_territoriales_y_turbulencias_pol%C3%ADticas_2009_', '_blank')">
+                <div class="timeline-date">1241 / 1243 / 1248</div>
+                <div class="timeline-text">Sucesivos testamentos de Jaime I que reparten el reino entre sus hijos, con creciente peso de los hijos de Violante.</div>
+                <div class="timeline-links">
+                    <span class="link-btn">Academia.edu</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="window.open('https://es.wikipedia.org/wiki/Violante_de_Hungr%C3%ADa', '_blank')">
+                <div class="timeline-date">1250</div>
+                <div class="timeline-text">Debilitada de salud, se retira al santuario de Santa María de Salas (Huesca).</div>
+                <div class="timeline-links">
+                    <span class="link-btn">Wikipedia</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="window.open('http://www.rutasjaumei.com/es/protagonistas-jaume-i/12-115/violante-de-hungria-la-reina-venida-de-oriente.php', '_blank')">
+                <div class="timeline-date">8 de octubre de 1251</div>
+                <div class="timeline-text">Dicta testamento en Huesca.</div>
+                <div class="timeline-links">
+                    <span class="link-btn">Rutas Jaume I</span>
+                    <span class="link-btn">Valencia Plaza</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="window.open('http://www.rutasjaumei.com/es/protagonistas-jaume-i/12-115/violante-de-hungria-la-reina-venida-de-oriente.php', '_blank')">
+                <div class="timeline-date">12 de octubre de 1251</div>
+                <div class="timeline-text">Muere en Huesca, a los 35-36 años, pocos días después de dictar testamento.</div>
+                <div class="timeline-links">
+                    <span class="link-btn">Rutas Jaume I</span>
+                    <span class="link-btn">Ecured</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item" onclick="window.open('https://es.wikipedia.org/wiki/Violante_de_Hungr%C3%ADa', '_blank')">
+                <div class="timeline-date">Sepultura</div>
+                <div class="timeline-text">Monasterio de Santa María de Vallbona (Lleida).</div>
+                <div class="timeline-links">
+                    <span class="link-btn">Wikipedia</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Dossier Histórico: Violante de Hungría (c. 1215/1216 – 1251)</p>
+        <p>Reina Consorte de Aragón, Mallorca y Valencia | Condesa Consorte de Barcelona | Señora de Montpellier</p>
+        <p style="margin-top: 15px; font-size: 0.85em;">Haz clic en cualquier cuadro o evento para acceder a las fuentes</p>
+    </div>
+</body>
+</html>
